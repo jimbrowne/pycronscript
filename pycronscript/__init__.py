@@ -27,6 +27,8 @@ from random import randint
 import sys
 import time
 
+__version__ = '0.1.1'
+
 
 class StdErrFilter(logging.Filter):
     ''' Discard all events below a configured level '''

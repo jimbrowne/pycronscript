@@ -16,9 +16,11 @@
 # limitations under the License.
 
 
+from pycronscript import __version__
+
 setup_args = {
     "name": "pycronscript",
-    "version": "0.1.0",
+    "version": __version__,
     "platforms": ["any"],
     "description": "Context manager handling common cron script functions",
     "long_description": """\
