@@ -27,7 +27,7 @@ from random import randint
 import sys
 import time
 
-__version__ = '0.1.1'
+__version__ = '0.1.2'
 
 
 class StdErrFilter(logging.Filter):
