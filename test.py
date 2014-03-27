@@ -17,7 +17,7 @@
 
 ''' Simple test of CronScript functionality '''
 
-from cronscript import CronScript
+from pycronscript import CronScript
 import logging
 from optparse import make_option
 import time

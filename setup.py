@@ -31,7 +31,7 @@ logging, locking, and splaying (random sleep on startup.)
     "maintainer_email": "jbrowne@jbrowne.com",
     "url": 'https://github.com/jimbrowne/pycronscript',
     "license": "Apache Software License",
-    "packages": ["cronscript"],
+    "packages": ["pycronscript"],
     "keywords": ["cron", "pycronscript"],
     "classifiers": [
         "Development Status :: 4 - Beta",
