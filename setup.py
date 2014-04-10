@@ -35,6 +35,7 @@ logging, locking, and splaying (random sleep on startup.)
     "license": "Apache Software License",
     "packages": ["pycronscript"],
     "keywords": ["cron", "pycronscript"],
+    "install_requires": ['lockfile'],
     "classifiers": [
         "Development Status :: 4 - Beta",
         "Intended Audience :: System Administrators",
