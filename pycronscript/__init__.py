@@ -27,7 +27,7 @@ from random import randint
 import sys
 import time
 
-__version__ = '0.1.2'
+__version__ = '0.1.3'
 
 
 class StdErrFilter(logging.Filter):
@@ -85,8 +85,6 @@ class CronScript(object):
 
         parser = OptionParser(option_list=options, usage=usage)
         (self.options, self.args) = parser.parse_args(args)
-
-        print self.options
 
         self.logger = logging.getLogger(main.__name__)
         formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
