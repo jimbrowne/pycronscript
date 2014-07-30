@@ -48,7 +48,8 @@ class StdErrFilter(logging.Filter):
 class CronScript(object):
     ''' Convenience class for writing cron scripts '''
 
-    def __init__(self, args=None, options=None, usage=None):
+    def __init__(self, args=None, options=None, usage=None,
+                 disable_interspersed_args=False):
         self.lock = None
         self.start_time = None
         self.end_time = None
@@ -57,7 +58,7 @@ class CronScript(object):
             options = []
 
         if args is None:
-            args = sys.argv
+            args = sys.argv[1:]
 
         prog = os.path.basename(main.__file__)
         logfile = os.path.join('/var/log/', prog)
@@ -84,6 +85,9 @@ class CronScript(object):
                                    help=helpmsg))
 
         parser = OptionParser(option_list=options, usage=usage)
+        if disable_interspersed_args:
+            # Stop option parsing at first non-option
+            parser.disable_interspersed_args()
         (self.options, self.args) = parser.parse_args(args)
 
         self.logger = logging.getLogger(main.__name__)
