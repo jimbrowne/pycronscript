@@ -105,25 +105,25 @@ class CronScript(object):
         else:
             self.logger.setLevel(logging.INFO)
 
-        # Log to file or syslog as well
-        if not self.options.nolog:
-            # Log to syslog
-            if self.options.syslog:
-                formatter = logging.Formatter("%s: %%(levelname)s %%(message)s" % prog)
-                handler = logging.handlers.SysLogHandler(
-                        address="/dev/log",
-                        facility=logging.handlers.SysLogHandler.LOG_LOCAL3
-                        )
-                handler.setFormatter(formatter)
-            # Log to file
-            else:
-                formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+        # Log to syslog
+        if self.options.syslog:
+            syslog_formatter = logging.Formatter("%s: %%(levelname)s %%(message)s" % prog)
+            handler = logging.handlers.SysLogHandler(
+                    address="/dev/log",
+                    facility=logging.handlers.SysLogHandler.LOG_LOCAL3
+                    )
+            handler.setFormatter(syslog_formatter)
+            self.logger.addHandler(handler)
+
+        default_formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
                                               "%Y-%m-%d-%H:%M:%S")
-                handler = logging.handlers.RotatingFileHandler(
-                    "%s" % (self.options.logfile),
-                    maxBytes=(10 * 1024 * 1024),
-                    backupCount=10)
-                handler.setFormatter(formatter)
+        if not self.options.nolog:
+            # Log to file
+            handler = logging.handlers.RotatingFileHandler(
+                "%s" % (self.options.logfile),
+                maxBytes=(10 * 1024 * 1024),
+                backupCount=10)
+            handler.setFormatter(default_formatter)
             self.logger.addHandler(handler)
 
         # If quiet, only WARNING and above go to STDERR; otherwise all
@@ -132,7 +132,7 @@ class CronScript(object):
         if self.options.quiet:
             err_filter = StdErrFilter()
             handler2.addFilter(err_filter)
-        handler2.setFormatter(formatter)
+        handler2.setFormatter(default_formatter)
         self.logger.addHandler(handler2)
 
         self.logger.info(self.options)
