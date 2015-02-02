@@ -63,6 +63,7 @@ class CronScript(object):
         prog = os.path.basename(main.__file__)
         logfile = os.path.join('/var/log/', prog)
         lockfile = os.path.join('/var/lock/', prog)
+        stampfile = os.path.join('/var/tmp/', prog)
         options.append(make_option("--debug", "-d", action="store_true",
                                    help="Minimum log level of DEBUG"))
         options.append(make_option("--quiet", "-q", action="store_true",
@@ -77,6 +78,11 @@ class CronScript(object):
         options.append(make_option("--lockfile", type="string",
                                    default=lockfile,
                                    help="Lock file, default %default"))
+        options.append(make_option("--nostamp", action="store_true",
+                                   help="Do not use a success stamp file"))
+        options.append(make_option("--stampfile", type="string",
+                                   default=stampfile,
+                                   help="Success stamp file, default %default"))
         helpmsg = "Lock timeout in seconds, default %default"
         options.append(make_option("--locktimeout", default=90, type="int",
                                    help=helpmsg))
@@ -140,3 +146,6 @@ class CronScript(object):
             self.logger.debug('Attempting to release lock %s',
                               self.options.lockfile)
             self.lock.release()
+        if etype is None:
+            if not self.options.nostamp:
+                open(self.options.stampfile, "w")
