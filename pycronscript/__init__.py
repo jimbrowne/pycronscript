@@ -73,6 +73,8 @@ class CronScript(object):
         options.append(make_option("--logfile", type="string",
                                    default=logfile,
                                    help="File to log to, default %default"))
+        options.append(make_option("--syslog", action="store_true",
+                                   help="Log to syslog instead of a file"))
         options.append(make_option("--nolock", action="store_true",
                                    help="Do not use a lockfile"))
         options.append(make_option("--lockfile", type="string",
@@ -97,21 +99,31 @@ class CronScript(object):
         (self.options, self.args) = parser.parse_args(args)
 
         self.logger = logging.getLogger(main.__name__)
-        formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
-                                      "%Y-%m-%d-%H:%M:%S")
 
         if self.options.debug:
             self.logger.setLevel(logging.DEBUG)
         else:
             self.logger.setLevel(logging.INFO)
 
+        # Log to file or syslog as well
         if not self.options.nolog:
-            # Log to file as well
-            handler = logging.handlers.RotatingFileHandler(
-                "%s" % (self.options.logfile),
-                maxBytes=(10 * 1024 * 1024),
-                backupCount=10)
-            handler.setFormatter(formatter)
+            # Log to syslog
+            if self.options.syslog:
+                formatter = logging.Formatter("%s: %%(levelname)s %%(message)s" % prog)
+                handler = logging.handlers.SysLogHandler(
+                        address="/dev/log",
+                        facility=logging.handlers.SysLogHandler.LOG_LOCAL3
+                        )
+                handler.setFormatter(formatter)
+            # Log to file
+            else:
+                formatter = logging.Formatter("%(asctime)s;%(levelname)s;%(message)s",
+                                              "%Y-%m-%d-%H:%M:%S")
+                handler = logging.handlers.RotatingFileHandler(
+                    "%s" % (self.options.logfile),
+                    maxBytes=(10 * 1024 * 1024),
+                    backupCount=10)
+                handler.setFormatter(formatter)
             self.logger.addHandler(handler)
 
         # If quiet, only WARNING and above go to STDERR; otherwise all
