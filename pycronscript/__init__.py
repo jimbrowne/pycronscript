@@ -62,7 +62,7 @@ class CronScript(object):
 
         prog = os.path.basename(main.__file__)
         logfile = os.path.join('/var/log/', prog)
-        lockfile = os.path.join('/var/tmp/', prog)
+        lockfile = os.path.join('/var/lock/', prog)
         options.append(make_option("--debug", "-d", action="store_true",
                                    help="Minimum log level of DEBUG"))
         options.append(make_option("--quiet", "-q", action="store_true",
