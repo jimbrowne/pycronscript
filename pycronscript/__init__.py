@@ -119,10 +119,16 @@ class CronScript(object):
                                               "%Y-%m-%d-%H:%M:%S")
         if not self.options.nolog:
             # Log to file
-            handler = logging.handlers.RotatingFileHandler(
-                "%s" % (self.options.logfile),
-                maxBytes=(10 * 1024 * 1024),
-                backupCount=10)
+            try:
+                handler = logging.handlers.RotatingFileHandler(
+                    "%s" % (self.options.logfile),
+                    maxBytes=(10 * 1024 * 1024),
+                    backupCount=10)
+            except IOError:
+                sys.stderr.write("Fatal: Could not open log file: %s\n"
+                                 % self.options.logfile)
+                sys.exit(1)
+
             handler.setFormatter(default_formatter)
             self.logger.addHandler(handler)
 
