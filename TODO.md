@@ -25,19 +25,3 @@ Logging to logstash/redis
 
 Add option for direct logging to logstash/redis
 
-
-Stale Lockfiles
----------------
-
-Handle stale lockfiles better than this:
-
-    # python /home/jjneely/nagiosreload.py
-    Traceback (most recent call last):
-      File "/home/jjneely/nagiosreload.py", line 116, in <module>
-        with CronScript():
-      File "/usr/lib/python2.7/dist-packages/pycronscript/__init__.py", line 132, in __enter__
-        self.lock.acquire(timeout=self.options.locktimeout)
-      File "/usr/lib/python2.7/dist-packages/lockfile.py", line 261, in acquire
-        raise LockTimeout
-    lockfile.LockTimeout
-

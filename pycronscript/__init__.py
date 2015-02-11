@@ -17,7 +17,7 @@
 # limitations under the License.
 
 import datetime as DT
-from lockfile import FileLock, LockFailed
+from lockfile import FileLock, LockFailed, LockTimeout
 import logging
 import logging.handlers
 import __main__ as main
@@ -160,6 +160,10 @@ class CronScript(object):
             except LockFailed as e:
                 self.logger.error("Lock could not be acquired.")
                 self.logger.error(str(e))
+                sys.exit(1)
+            except LockTimeout as e:
+                msg = "Lock could not be acquired. Timeout exceeded."
+                self.logger.error(msg)
                 sys.exit(1)
 
     def __exit__(self, etype, value, traceback):
