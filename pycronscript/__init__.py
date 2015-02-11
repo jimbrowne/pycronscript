@@ -17,7 +17,7 @@
 # limitations under the License.
 
 import datetime as DT
-from lockfile import FileLock
+from lockfile import FileLock, LockFailed
 import logging
 import logging.handlers
 import __main__ as main
@@ -155,7 +155,12 @@ class CronScript(object):
                               self.options.lockfile,
                               self.options.locktimeout)
             self.lock = FileLock(self.options.lockfile)
-            self.lock.acquire(timeout=self.options.locktimeout)
+            try:
+                self.lock.acquire(timeout=self.options.locktimeout)
+            except LockFailed as e:
+                self.logger.error("Lock could not be acquired.")
+                self.logger.error(str(e))
+                sys.exit(1)
 
     def __exit__(self, etype, value, traceback):
         self.end_time = DT.datetime.today()
