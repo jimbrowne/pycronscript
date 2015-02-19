@@ -1,3 +1,9 @@
+pycronscript (0.2.1-1) unstable; urgency=low
+
+  * Version bump
+
+ -- Jack Neely <jjneely@42lines.net>  Thu, 19 Feb 2015 17:03:36 -0500
+
 pycronscript (0.2.0-1.precise) precise; urgency=low
 
   * Update to 0.2.0 that includes cronwrap and a utils sub-module
