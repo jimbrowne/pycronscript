@@ -1,0 +1,14 @@
+Source: pycronscript
+Maintainer: Jim Browne <jbrowne@jbrowne.com>
+Section: python
+Priority: optional
+Build-Depends: python-setuptools (>= 0.6b3), python-all (>= 2.6.6-3), debhelper (>= 7), python-lockfile
+Standards-Version: 3.9.1
+
+Package: python-pycronscript
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}
+Description: Context manager handling common cron script functions
+ CronScript implements a context manager for use with cron scripts.  It handles
+ logging, locking, and splaying (random sleep on startup.)
+ .
