@@ -36,6 +36,7 @@ logging, locking, and splaying (random sleep on startup.)
     "packages": ["pycronscript"],
     "keywords": ["cron", "pycronscript"],
     "install_requires": ['lockfile'],
+    "scripts": ["cronwrap"],
     "classifiers": [
         "Development Status :: 4 - Beta",
         "Intended Audience :: System Administrators",
