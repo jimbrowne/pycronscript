@@ -1,7 +1,7 @@
 ''' Convenience class for writing cron scripts'''
 # pylint: disable=R0903
 
-# Copyright 2014 42Lines, Inc.
+# Copyright 2014-5 42Lines, Inc.
 # Original Author: Jim Browne
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ from random import randint
 import sys
 import time
 
-__version__ = '0.2.1'
+__version__ = '0.2.2'
 
 
 class StdErrFilter(logging.Filter):

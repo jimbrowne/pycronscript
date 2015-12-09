@@ -1,3 +1,9 @@
+pycronscript (0.2.2-1) unstable; urgency=low
+
+  * Update to 0.2.2 that includes "as" clause support
+
+ -- Jim Browne <jbrowne@jbrowne.com>  Tue, 8 Dec 2015 22:09:00 -0800
+
 pycronscript (0.2.1-1) unstable; urgency=low
 
   * Version bump

@@ -11,9 +11,13 @@ Here are the included options:
       -q, --quiet           Only WARN and above to stdout
       --syslog              Log to local syslog
       --nolog               Do not log to LOGFILE
-      --logfile=LOGFILE     File to log to, default /var/log/PROGNAME
+      --logfile=LOGFILE     File to log to, default /var/log/PROGNAME.log
+      --syslog              Log to syslog instead of a file
       --nolock              Do not use a lockfile
-      --lockfile=LOCKFILE   Lock file, default /var/tmp/PROGNAME
+      --lockfile=LOCKFILE   Lock file, default /var/lock/PROGNAME.lock
+      --nostamp             Do not use a success stamp file
+      --stampfile=STAMPFILE
+                            Success stamp file, default /var/tmp/PROGNAME.success
       --locktimeout=LOCKTIMEOUT
                             Lock timeout in seconds, default 90
       --splay=SPLAY         Sleep a random time between 0 and N seconds before

@@ -3,7 +3,7 @@ Upstream-Name: pycronscript
 Source: https://github.com/jjneely/pycronscript
 
 Files: *
-Copyright: 2014 42 Lines, Inc.
+Copyright: 2014-5 42 Lines, Inc.
 License: Apache-2.0
 
 License: Apache-2.0
