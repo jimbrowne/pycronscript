@@ -30,8 +30,9 @@ OPTIONS.append(make_option("--foobar", type="string",
                            help="Mew mew mew, default %default"))
 USAGE = "usage: %prog [options] arg1 arg2"
 
-with CronScript(options=OPTIONS, usage=USAGE):
+with CronScript(options=OPTIONS, usage=USAGE) as options:
     LOGGER = logging.getLogger(__name__)
     LOGGER.info('Does this work?')
 
+    print "Options are: %s" % options
     time.sleep(900)

@@ -165,6 +165,7 @@ class CronScript(object):
                 msg = "Lock could not be acquired. Timeout exceeded."
                 self.logger.error(msg)
                 sys.exit(1)
+        return self.options
 
     def __exit__(self, etype, value, traceback):
         self.end_time = DT.datetime.today()
