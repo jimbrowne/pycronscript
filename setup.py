@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
-# Copyright 2014 42Lines, Inc.
+# Copyright 2014-2022 42Lines, Inc.
 # Original Author: Jim Browne
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -36,20 +36,24 @@ logging, locking, and splaying (random sleep on startup.)
     "packages": ["pycronscript"],
     "keywords": ["cron", "pycronscript"],
     "install_requires": ['lockfile'],
+    "python_requires": '>=3',
     "scripts": ["cronwrap"],
     "classifiers": [
         "Development Status :: 4 - Beta",
         "Intended Audience :: System Administrators",
         "License :: OSI Approved :: Apache Software License",
         "Operating System :: OS Independent",
-        "Programming Language :: Python",
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        "Programming Language :: Python :: 3.10",
+        'Programming Language :: Python :: 3 :: Only',
         "Topic :: System :: Systems Administration"
         ]
 }
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from distutils.core import setup
 
 setup(**setup_args)

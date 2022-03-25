@@ -1,6 +1,6 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-# Copyright 2014-5 42Lines, Inc.
+# Copyright 2014-2022 42Lines, Inc.
 # Original Author: Jim Browne
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,5 +34,5 @@ with CronScript(options=OPTIONS, usage=USAGE) as options:
     LOGGER = logging.getLogger(__name__)
     LOGGER.info('Does this work?')
 
-    print "Options are: %s" % options
+    print("Options are: %s" % options)
     time.sleep(900)

@@ -21,7 +21,7 @@ def run(cmd, cwd=None, shell=False, env=None):
     p = Popen(args, shell=shell, cwd=cwd, stdout=PIPE, stderr=PIPE, env=env)
     stdout, stderr = p.communicate()
 
-    return p.returncode, stdout, stderr
+    return p.returncode, stdout.decode('UTF-8'), stderr.decode('UTF-8')
 
 
 def run_log(cmd, cwd=None, shell=False, env=None):

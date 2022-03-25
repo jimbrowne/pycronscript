@@ -64,7 +64,7 @@ See test.py file.
 Requirements
 ------------
 
-Probably Python 2.7.  (Might work on earlier versions.)
+Probably Python 3.6.  (Might work on earlier versions of Python3.)
 
 TODO
 ----
